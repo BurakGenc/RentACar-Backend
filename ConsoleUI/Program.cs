@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -11,28 +12,34 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-
-
-
-            CarManager carMananger = new CarManager(new EfCarDal());
-            
-            Car car2 = new Car { Id = 1,Name="A", BrandId = 1, ColorId = 4, DailyPrice = 0, ModelYear = 500000, Description = "müthiş bişi" };
-            Car car3 = new Car { Id = 2, Name = "B" ,BrandId = 1, ColorId = 5, DailyPrice = 50000, ModelYear = 500000, Description = "0 ayarında" };
-            Car car4 = new Car { Id = 3, Name = "C" ,BrandId = 2, ColorId = 3, DailyPrice = 500000, ModelYear = 500000, Description = "sigara bile içilmedi" };
-            Car car5 = new Car { Id = 4, Name = "D", BrandId = 3, ColorId = 1, DailyPrice = 500000, ModelYear = 500000, Description = "yemede yanında yat" };
-
-           
-            
+             CarTest();
            
 
-            foreach (var c in carMananger.GetCarsByBrandId(1))
+      
+
+            
+          //  EfColorDal efColorDal = new EfColorDal();
+            /* efColorDal.Add(color);
+             efColorDal.Add(color2);
+            */
+
+/*
+            foreach (var c in efColorDal.GetAll())
             {
-                Console.WriteLine(c.Id);
+                Console.WriteLine(c.Name);
             }
-           /* InMemoryProductDal inMemoryProductDal = new InMemoryProductDal();*/
+           
+            */
 
-            
-           /* Car car = new Car { Id = 4, BrandId = 3, ColorId = 1, DailyPrice = 32000, ModelYear = 2013, Description = "yemede yanında yat" };*/
+           /* EfBrandDal brandDal = new EfBrandDal(); 
+            brandDal.Add(brand);
+            brandDal.Add(brand2);*/
+          
+
+            /* InMemoryProductDal inMemoryProductDal = new InMemoryProductDal();*/
+
+
+            /* Car car = new Car { Id = 4, BrandId = 3, ColorId = 1, DailyPrice = 32000, ModelYear = 2013, Description = "yemede yanında yat" };*/
 
             /*inMemoryProductDal.Delete(car);*/
 
@@ -43,17 +50,30 @@ namespace ConsoleUI
              }*/
 
 
-         /*   List<Car> x = carMananger.GetAll();
-            foreach (Car c in x)
-            {
-                Console.WriteLine(c.Description);
-            }
-            
-           
+            /*   List<Car> x = carMananger.GetAll();
+               foreach (Car c in x)
+               {
+                   Console.WriteLine(c.Description);
+               }
 
-           
-            */
-          
+
+
+
+               */
+
+        }
+
+        private static void CarTest()
+        {
+            CarManager carMananger = new CarManager(new EfCarDal());
+
+
+
+
+            foreach (var c in carMananger.GetCarDetails())
+            {
+                Console.WriteLine(c.CarId+" "+c.BrandName+" "+c.ColorName);
+            }
         }
     }
 }
