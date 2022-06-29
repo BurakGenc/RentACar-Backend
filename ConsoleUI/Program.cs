@@ -69,10 +69,17 @@ namespace ConsoleUI
 
 
 
-
-            foreach (var c in carMananger.GetCarDetails())
+            var result = carMananger.GetAll();
+            if (result.IsSuccess == true)
             {
-                Console.WriteLine(c.CarId+" "+c.BrandName+" "+c.ColorName);
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.Name);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
     }
