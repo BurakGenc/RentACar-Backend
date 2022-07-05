@@ -1,4 +1,4 @@
-﻿using Core.DataAccess;
+﻿using Core.Utilities.Results;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -6,11 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace Business.Abstract
 {
-    public interface IBrandDal:IEntityRepository<Brand>
+    public interface ICustomerService
     {
-       
+        IResult Add(Customer customer);
     }
 }
-//Code Refactoring
