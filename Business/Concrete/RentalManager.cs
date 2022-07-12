@@ -23,7 +23,7 @@ namespace Business.Concrete
            
         {
 
-            if (GetLastRental(rental.CarId).ReturnDate.Year ==1 )
+            if (GetLastRental(rental.CarId).Data.ReturnDate.Year ==1 )
             {
                 return new ErrorResult("Araç Teslim edilmemiş kiralanamaz");
             }
@@ -32,9 +32,25 @@ namespace Business.Concrete
 
         }
 
-        public Rental GetLastRental(int id)
+        public IResult Delete(Rental rental)
         {
-            return _rentaldal.GetLastRental(p=>p.CarId == id);
+            _rentaldal.Delete(rental);
+            return new SuccessResult();
+        }
+
+        public IDataResult<List<Rental>> GetAll()
+        {
+            return new SuccessDataResult<List<Rental>>(_rentaldal.GetAll()," Kiralama listesi");
+        }
+
+        public IDataResult<Rental> GetById(int rentalId)
+        {
+           return new SuccessDataResult<Rental>(_rentaldal.Get(p=>p.Id == rentalId));
+        }
+
+        public IDataResult<Rental> GetLastRental(int id)
+        {
+            return  new SuccessDataResult<Rental>(_rentaldal.GetLastRental(p=>p.CarId == id));
         }
 
         public IResult Update(Rental rental)
